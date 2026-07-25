@@ -2,15 +2,6 @@
 # .circleci/config.yml
 #================================================
 
-project/
-│
-├── .circleci/
-│   └── config.yml
-├── unit_test_demo.py
-├── test_unit_test_demo.py
-├── requirements.txt
-└── README.md
-
 version: 2.1
 
 jobs:
