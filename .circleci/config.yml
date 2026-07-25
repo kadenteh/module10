@@ -1,7 +1,7 @@
 # YAML
 # .circleci/config.yml
 #================================================
-"""
+
 project/
 │
 ├── .circleci/
@@ -10,7 +10,7 @@ project/
 ├── test_unit_test_demo.py
 ├── requirements.txt
 └── README.md
-"""
+
 version: 2.1
 
 jobs:
