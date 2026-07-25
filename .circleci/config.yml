@@ -1,0 +1,70 @@
+# YAML
+# .circleci/config.yml
+#================================================
+"""
+project/
+│
+├── .circleci/
+│   └── config.yml
+├── unit_test_demo.py
+├── test_unit_test_demo.py
+├── requirements.txt
+└── README.md
+"""
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.12
+
+    working_directory: ~/project
+
+    steps:
+      - checkout
+
+      - run:
+          name: Verify Python Version
+          command: python --version
+
+      - run:
+          name: Install Dependencies
+          command: |
+            python -m pip install --upgrade pip
+
+            if [ -f requirements.txt ]; then
+              pip install -r requirements.txt
+            fi
+
+  test:
+    docker:
+      - image: cimg/python:3.12
+
+    working_directory: ~/project
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: |
+            python -m pip install --upgrade pip
+
+            if [ -f requirements.txt ]; then
+              pip install -r requirements.txt
+            fi
+
+      - run:
+          name: Run Unit Tests
+          command: |
+            python -m unittest discover -v
+
+workflows:
+  version: 2
+
+  ci_pipeline:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
